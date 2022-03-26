@@ -27,3 +27,5 @@ hs_err_pid*
 
 # MAC OS files
 .DS_Store
+/.idea/
+/mosca-ceca.iml
