@@ -22,4 +22,12 @@ public interface IScacchiera {
     
         //ritorna l'oggetto casella alle coordinate specificate
         public ICasella getCasella(int x,int y);
+
+        public void setLenx(int lenx);
+        
+        public int getLenx();
+
+        public void setLeny(int lenx);
+        
+        public int getLeny();
 }

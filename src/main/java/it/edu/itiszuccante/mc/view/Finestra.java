@@ -3,18 +3,16 @@ package it.edu.itiszuccante.mc.view;
 import java.awt.*;
 import javax.swing.*;
 
-// import model.scacchiera.Scacchiera;
-public class Finestra {
+import it.edu.itiszuccante.mc.control.Gioco;
+import it.edu.itiszuccante.mc.model.IScacchiera;
 
-    // private Scacchiera sca;
+public class Finestra {
 
     private JFrame frame;
     private JPanel mainPanel;
     private final Font mainFont = new Font("Sogoe print", Font.BOLD, 18);
 
-    // public Finestra(Scacchiera sca) {
     public Finestra() {
-        // this.sca = sca;
 
         frame = new JFrame();
         setupUI();
@@ -64,49 +62,23 @@ public class Finestra {
         statisticsPanel.add(toolBar$Separator1);
         statisticsPanel.add(turni);
         JPanel scacc = new JPanel();
-
-        /*
-        int h = 30, w = 30;
-        JPanel scacc = new JPanel(){
-            public void paintComponent(Graphics g){
-                super.paintComponent(g);
-                ImageIcon img;
-                
-                int x = 0;
-                for(int i = 0; i < (sca.getLenx()*h); i+=h){
-                    int y =0;
-                    for(int j = 0; j < (sca.getLeny()*w); j+=w){
-                        g.setColor(Color.BLACK);
-                        g.fillRect(i, j, h, w);
-                        if(sca.getCasella(x, y).getInfo().equals("vuota")){
-                            g.setColor(new Color(255,255,255));
-                            g.fillRect(i, j, h-1, w-1);
-                        }else if(sca.getCasella(x, y).getInfo().contains("Seta")){
-                            img = new ImageIcon(".\\src\\view\\seta1.png");
-                            g.drawImage( img.getImage(), i, j, h-1, w-1, null);    
-                        }else if(sca.getCasella(x, y).getInfo().contains("Energia")){
-                            img = new ImageIcon(".\\src\\view\\energia1.png");
-                            g.drawImage( img.getImage(), i, j, h-1, w-1, null);    
-                        }else{
-                            img = new ImageIcon(".\\src\\view\\agente1.png");
-                            g.drawImage( img.getImage(), i, j, h-1, w-1, null);
-                        }
-                        y++;
-                    }
-                    x++;
-                }
-            }
-        };
+        // TODO: remove hardwired constants
+        int h = 20, w = 20;
+        IScacchiera sca = Gioco.getGiocoCorrente().getScacchiera();
+        scacc = new Disegno(h, w, sca); // instanzio l'oggetto Disegno
         scacc.setPreferredSize(new Dimension((sca.getLenx()*h)+1, (sca.getLeny()*w)+1));
         
         JTextArea OutPut = new JTextArea();
-        OutPut.append(sca.toString());
+        // OutPut.append(sca.toString());
         OutPut.setEditable(false);
-        */
+        
         JScrollPane scrollPane1 = new JScrollPane(scacc);
         scrollPane1.setAutoscrolls(true);
         scrollPane1.setViewportBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
- 
+
+        /**
+         * * Pannello Principale
+         */
         mainPanel.add(statisticsPanel, BorderLayout.PAGE_END);
         mainPanel.add(scrollPane1);
     }

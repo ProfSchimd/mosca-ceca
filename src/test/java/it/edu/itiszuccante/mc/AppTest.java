@@ -1,4 +1,4 @@
-package it.edu.itiszuccante;
+package it.edu.itiszuccante.mc;
 
 import org.junit.jupiter.api.Test;
 

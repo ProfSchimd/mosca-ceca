@@ -12,6 +12,12 @@ public class Scacchiera implements IScacchiera {
     private int lenx;
     private int leny;
 
+    public Scacchiera() {
+        lenx = LATO_SCACCHIERA;
+        leny = LATO_SCACCHIERA;
+        generate();
+    }
+
     @Override
     public void generate() {
         scac = new Casella[lenx][leny];
@@ -143,10 +149,12 @@ public class Scacchiera implements IScacchiera {
         return scac[x][y];
     }
 
+    @Override
     public int getLenx() {
         return lenx;
     }
 
+    @Override
     public void setLenx(int lenx) {
         this.lenx = lenx;
     }
