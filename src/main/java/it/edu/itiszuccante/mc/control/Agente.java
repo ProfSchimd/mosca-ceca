@@ -20,6 +20,7 @@ public class Agente implements IAgente {
     private Seta seta;
     private int bandierine;
     private IScacchiera sca;
+    private int mossa;
 
     public synchronized void pianta() {
         if ((sca.pianta(this.x, this.y, this)) && (bandierine > 0)) {
@@ -99,4 +100,11 @@ public class Agente implements IAgente {
         this.sca = sca;
     }
 
+    public int getMossa() {
+        return mossa;
+    }
+
+    public void setMossa(int mossa) {
+        this.mossa = mossa;
+    }
 }
