@@ -16,19 +16,17 @@ si procede con la definizione di tal protocollo.
 ## Generalità sul protocollo
 * La comunicazione avviene mediante il protocollo TCP
 * Il server ascolta sulla porta `41041`
-* ~La comunicazione avviene mediante lo scambio di stringhe `JSON`~
+* La comunicazione avviene mediante lo scambio di stringhe
 
   
 
 ## Comandi dal client
 
-* `connect` si connette al server deve fornire: nome agente, ...
-* `disconnect` di disconnette dal server abbandonando il gioco
-* `status` ottiene informazioni generali sul gioco: tempo rimanente, lista giocatori, ...
-* `board` ottiene informazioni sulla stato della *scacchiera*
+* `connect` si connette al server deve fornire: nome agente, se è già esistente un agente con lo stesso nome la connsessione verrà interrotta.
+* `status` ottiene informazioni generali sul gioco: turni rimasi.
+* `board` ottiene informazioni sulla stato delle caselle adiacenti all'agente.
 
 ## Comandi dal server
 
 * `move` richiede una mossa al client
-* `end` comunica la fine del gioco fornendo le informazioni sul risultato
-  e *classifica* finale
+* `end` interrompe la comunicazione

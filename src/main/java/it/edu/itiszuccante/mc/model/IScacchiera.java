@@ -13,7 +13,7 @@ public interface IScacchiera {
 
         //ritorna le caselle vicine a quella passata
         public ICasella[] getNeighborhood(int x, int y);
-    
+
         //l'agente specificato pianta la bandiera nella casella specificata (compito della scacchiera dire se la casella è disponibile)
         public boolean pianta(int x, int y, IAgente agg);
     

@@ -2,7 +2,7 @@ package it.edu.itiszuccante.mc.control;
 
 import it.edu.itiszuccante.mc.model.IScacchiera;
 import it.edu.itiszuccante.mc.model.Scacchiera;
-import it.edu.itiszuccante.mc.thread.ServerITP;
+import it.edu.itiszuccante.mc.thread.ServerThread;
 
 import java.util.ArrayList;
 
@@ -23,7 +23,7 @@ public class Gioco implements IGioco {
         return giocoCorrente;
     }
 
-    private IScacchiera scacchiera;
+    public IScacchiera scacchiera;
 
     private Gioco() {
         scacchiera = new Scacchiera();
@@ -34,14 +34,21 @@ public class Gioco implements IGioco {
         return scacchiera;
     }
 
-    ArrayList<ServerITP> clients = new ArrayList<>();
+    ArrayList<ServerThread> clients = new ArrayList<>();
     ArrayList<Agente> playerList = new ArrayList<>(); //Lista dei giocatori
+    private int turniRimasti;
 
     /**
      * Metodo che aggiunge un player
      * @param o agente da aggiungere
      */
-    private void addAgent(ServerITP o){
+    public void addAgent(ServerThread o){
+        for(Agente i : playerList){
+            if(o.ag.getName().equals(i.getName())){  //verifico se esiste gia' un agente con lo stesso nome
+                o.end();
+                return;
+            }
+        }
         playerList.add(o.ag);
         clients.add(o);
     }
@@ -65,11 +72,14 @@ public class Gioco implements IGioco {
      * @param ag agente a cui chiedere la mossa
      */
     private void askMove(Agente ag){
-        for(ServerITP i : clients){
+        for(ServerThread i : clients){
             if(i.ag.equals(ag)){
                 i.askMove();
             }
         }
     }
 
+    public int getTurniRimasti() {
+        return turniRimasti;
+    }
 }

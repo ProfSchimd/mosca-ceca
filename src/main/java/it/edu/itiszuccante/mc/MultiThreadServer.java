@@ -1,6 +1,6 @@
 package it.edu.itiszuccante.mc;
 
-import it.edu.itiszuccante.mc.thread.ServerITP;
+import it.edu.itiszuccante.mc.thread.ServerThread;
 import it.edu.itiszuccante.mc.control.Gioco;
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -14,7 +14,7 @@ public class MultiThreadServer {
             ServerSocket server = new ServerSocket(SERVER_LISTEN_PORT);
             while(true) {
                 Socket socket = server.accept();
-                Thread t = new ServerITP(socket, g);
+                Thread t = new ServerThread(socket, g);
                 t.start();
             }
         } catch (IOException e) {
